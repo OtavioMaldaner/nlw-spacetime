@@ -117,3 +117,43 @@ npm run dev
     * O arquivo favicon.icon na pasta `/src/app/`;
     * Remover todo o código **MENOS OS IMPORTS** do arquivo `globals.css`; 
     * Remover todo o código HTML do `return()` no arquivo `page.tsx`;
+
+## Download plugin-tailwind
+```sh
+npm i prettier-plugin-tailwindcss -D
+```
+
+# Criação do projeto mobile
+
+```sh
+npx create-expo-app mobile
+```
+
+## Download Tailwind
+
+```sh
+npm i nativewind
+```
+```sh
+npm i tailwindcss -D
+```
+```sh
+npx tailwindcss init
+```
+* Entrar no arquivo `tailwind.config.js` e alterar a linha `content: []` para `content: ["./App.tsx", "./app/**/*.tsx"],`;
+* Entrar no arquivo `babel.config.js` e adicionar a linha `plugins: ["nativewind/babel"],` embaixo da linha do `presets`;
+* Adicionar o código no compilerOptions do arquivo `tsconfig.json`;
+```ts
+"types": [
+      "nativewind/types"
+    ]
+```
+
+## Download plugin-tailwind
+```sh
+npm i prettier-plugin-tailwindcss -D
+```
+## Para executar o servidor basta:
+```sh
+npm run start
+```
