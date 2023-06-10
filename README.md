@@ -123,6 +123,11 @@ npm run dev
 npm i prettier-plugin-tailwindcss -D
 ```
 
+## Download lib de ícones
+```sh
+npm i lucide-react
+```
+
 # Criação do projeto mobile
 
 ```sh
