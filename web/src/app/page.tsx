@@ -33,7 +33,7 @@ export default function Home() {
             </h1>
             <p className="text-lg leading-relaxed">
               Colecione momentos marcantes da sua jornada e compartilhe (se
-              quiser) com o mundo
+              quiser) com o mundo!
             </p>
           </div>
           <a
@@ -55,7 +55,6 @@ export default function Home() {
           >
             Rocketseat
           </a>
-          {/* MIN: 48:59 */}
         </div>
       </div>
       {/* RIGHT SIDE */}

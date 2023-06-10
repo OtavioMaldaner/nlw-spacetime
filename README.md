@@ -162,3 +162,55 @@ npm i prettier-plugin-tailwindcss -D
 ```sh
 npm run start
 ```
+
+## Download fontes:
+```sh
+npx expo install @expo-google-fonts/roboto @expo-google-fonts/bai-jamjuree expo-font
+```
+
+## Para suportar SVG:
+* Inicialmente: 
+```sh
+npx expo install react-native-svg
+```
+* Em seguida:
+```sh
+npm i react-native-svg-transformer -D
+```
+* Crie o arquivo `metro.config.js` na raiz do projeto;
+* Em seguida adicione o código no arquivo:
+```js
+const { getDefaultConfig } = require("expo/metro-config");
+
+module.exports = (() => {
+  const config = getDefaultConfig(__dirname);
+
+  const { transformer, resolver } = config;
+
+  config.transformer = {
+    ...transformer,
+    babelTransformerPath: require.resolve("react-native-svg-transformer"),
+  };
+  config.resolver = {
+    ...resolver,
+    assetExts: resolver.assetExts.filter((ext) => ext !== "svg"),
+    sourceExts: [...resolver.sourceExts, "svg"],
+  };
+
+  return config;
+})();
+```
+* Caso esteja utilizando TypeScript, adicione o código no arquivo `assets.d.ts` (caso não tenha, deve ser criado):
+```ts
+declare module "*.svg" {
+  import React from 'react';
+  import { SvgProps } from "react-native-svg";
+  const content: React.FC<SvgProps>;
+  export default content;
+}
+```
+
+## Você pode reiniciar o servidor, limpando o cache com o comando:
+```sh
+npx expo start --clear
+```
