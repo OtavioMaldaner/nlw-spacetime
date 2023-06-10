@@ -90,6 +90,16 @@ npx prisma studio
 npm i @prisma/client
 ```
 
+## Download ZOD
+```sh
+npm i zod
+```
+
+## Download CORS
+```sh
+npm i @fastify/cors
+```
+
 # Criação do projeto front-end 
 
 ## Execute o comando
