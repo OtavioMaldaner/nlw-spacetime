@@ -100,6 +100,20 @@ npm i zod
 npm i @fastify/cors
 ```
 
+## Download DOTENV (para ler arquivos.env)
+```sh
+npm i dotenv -D
+```
+
+## Download Axios 
+```sh
+npm i axios
+```
+## Download JWT 
+```sh
+npm i @fastify/jwt
+```
+
 # Criação do projeto front-end 
 
 ## Execute o comando
@@ -136,6 +150,15 @@ npm i prettier-plugin-tailwindcss -D
 ## Download lib de ícones
 ```sh
 npm i lucide-react
+```
+
+## Download Axios 
+```sh
+npm i axios
+```
+## Download JWT Decode 
+```sh
+npm i jwt-decode
 ```
 
 # Criação do projeto mobile
