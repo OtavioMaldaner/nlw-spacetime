@@ -247,3 +247,23 @@ declare module "*.svg" {
 ```sh
 npx expo start --clear
 ```
+
+## Download Expo Auth Session:
+```sh
+npx expo install expo-auth-session expo-crypto
+```
+
+## Download Axios 
+```sh
+npm i axios
+```
+
+## Download Expo Secure Store 
+```sh
+npx expo install expo-secure-store
+```
+
+## Download Expo Router 
+```sh
+npx expo install expo-router react-native-safe-area-context react-native-screens expo-linking expo-constants expo-status-bar react-native-gesture-handler
+```
