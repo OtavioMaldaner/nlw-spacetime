@@ -1,6 +1,6 @@
-/* eslint-disable prettier/prettier */
 import { FastifyInstance } from 'fastify'
 import { z } from 'zod'
+
 import { prisma } from '../lib/prisma'
 
 export async function memoriesRoutes(app: FastifyInstance) {
@@ -9,9 +9,11 @@ export async function memoriesRoutes(app: FastifyInstance) {
   })
 
   app.get('/memories', async (request) => {
+    const { sub: userId } = request.user
+
     const memories = await prisma.memory.findMany({
       where: {
-        userId: request.user.sub,
+        userId,
       },
       orderBy: {
         createdAt: 'asc',
@@ -23,12 +25,13 @@ export async function memoriesRoutes(app: FastifyInstance) {
         id: memory.id,
         coverUrl: memory.coverUrl,
         excerpt: memory.content.substring(0, 115).concat('...'),
-        createdAt: memory.createdAt,
       }
     })
   })
 
   app.get('/memories/:id', async (request, reply) => {
+    const { sub: userId } = request.user
+
     const paramsSchema = z.object({
       id: z.string().uuid(),
     })
@@ -41,7 +44,7 @@ export async function memoriesRoutes(app: FastifyInstance) {
       },
     })
 
-    if (!memory.isPublic && memory.userId !== request.user.sub) {
+    if (!memory.isPublic && memory.userId !== userId) {
       return reply.status(401).send()
     }
 
@@ -49,6 +52,8 @@ export async function memoriesRoutes(app: FastifyInstance) {
   })
 
   app.post('/memories', async (request) => {
+    const { sub: userId } = request.user
+
     const bodySchema = z.object({
       content: z.string(),
       coverUrl: z.string(),
@@ -62,7 +67,7 @@ export async function memoriesRoutes(app: FastifyInstance) {
         content,
         coverUrl,
         isPublic,
-        userId: request.user.sub,
+        userId,
       },
     })
 
@@ -70,6 +75,8 @@ export async function memoriesRoutes(app: FastifyInstance) {
   })
 
   app.put('/memories/:id', async (request, reply) => {
+    const { sub: userId } = request.user
+
     const paramsSchema = z.object({
       id: z.string().uuid(),
     })
@@ -90,7 +97,7 @@ export async function memoriesRoutes(app: FastifyInstance) {
       },
     })
 
-    if (memory.userId !== request.user.sub) {
+    if (memory.userId !== userId) {
       return reply.status(401).send()
     }
 
@@ -109,6 +116,8 @@ export async function memoriesRoutes(app: FastifyInstance) {
   })
 
   app.delete('/memories/:id', async (request, reply) => {
+    const { sub: userId } = request.user
+
     const paramsSchema = z.object({
       id: z.string().uuid(),
     })
@@ -121,7 +130,7 @@ export async function memoriesRoutes(app: FastifyInstance) {
       },
     })
 
-    if (memory.userId !== request.user.sub) {
+    if (memory.userId !== userId) {
       return reply.status(401).send()
     }
 
