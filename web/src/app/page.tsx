@@ -6,14 +6,9 @@ import { ArrowRight } from "lucide-react";
 import { cookies } from "next/headers";
 import Image from "next/image";
 import Link from "next/link";
+import { Memory } from "./types";
 
 dayjs.locale(ptBr);
-interface Memory {
-  id: string;
-  coverUrl: string;
-  except: string;
-  createdAt: string;
-}
 
 export default async function Home() {
   const isAuthenticated = cookies().has("token");
@@ -50,7 +45,7 @@ export default async function Home() {
               className="aspect-video w-full rounded-lg object-cover"
             />
             <p className="text-lg leading-relaxed text-gray-100">
-              {memory.except}
+              {memory.content}
             </p>
             <Link
               href={`/memories/${memory.id}`}

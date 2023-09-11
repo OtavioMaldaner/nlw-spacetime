@@ -16,7 +16,7 @@ export async function memoriesRoutes(app: FastifyInstance) {
         userId,
       },
       orderBy: {
-        createdAt: 'asc',
+        createdAt: 'desc',
       },
     })
 
@@ -24,7 +24,7 @@ export async function memoriesRoutes(app: FastifyInstance) {
       return {
         id: memory.id,
         coverUrl: memory.coverUrl,
-        except: memory.content.substring(0, 115).concat('...'),
+        content: memory.content.substring(0, 115).concat('...'),
         createdAt: memory.createdAt
       }
     })

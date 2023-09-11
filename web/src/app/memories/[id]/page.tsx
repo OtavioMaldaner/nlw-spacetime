@@ -5,6 +5,7 @@ import dayjs from "dayjs";
 import ptBr from "dayjs/locale/pt-br";
 import { cookies } from "next/headers";
 import Image from "next/image";
+import Link from "next/link";
 
 dayjs.locale(ptBr);
 
@@ -54,7 +55,14 @@ export default async function ViewMemory({ params }: MemoryProps) {
         <p className="text-lg leading-relaxed text-gray-100">
           {memory.content}
         </p>
-        {getUser().sub === memory.userId && <div>Editar</div>}
+        {getUser().sub === memory.userId && (
+          <Link
+            href={`memories/edit/${memory.id}`}
+            className="inline-block self-end rounded-full bg-green-500 px-5 py-3 font-alt text-sm font-bold uppercase leading-none text-black transition-all hover:cursor-pointer hover:opacity-80"
+          >
+            Editar
+          </Link>
+        )}
       </div>
     );
   }

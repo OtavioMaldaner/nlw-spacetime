@@ -6,14 +6,20 @@ import nlwLogo from "../assets/nlw-spacetime-logo.svg";
 export function Hero() {
   const router = useRouter();
   return (
-    <div
-      className="space-y-5"
-      onClick={() => {
-        router.push("/");
-      }}
-    >
-      <Image src={nlwLogo} alt="Logo NLW" />
-      <div className="max-w-[420px] space-y-1">
+    <div className="space-y-5">
+      <Image
+        src={nlwLogo}
+        alt="Logo NLW"
+        onClick={() => {
+          router.push("/");
+        }}
+      />
+      <div
+        className="max-w-[420px] space-y-1"
+        onClick={() => {
+          router.push("/");
+        }}
+      >
         <h1 className="text-5xl font-bold leading-tight text-gray-50">
           Sua cápsula do tempo
         </h1>

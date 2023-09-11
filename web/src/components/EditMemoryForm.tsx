@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 import { FormEvent } from "react";
 import { MediaPicker } from "./MediaPicker";
 
-export function NewMemoryForm() {
+export function EditMemoryForm({ memoryId }: { memoryId: string }) {
   const router = useRouter();
   const handleCreateMemory = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -20,8 +20,8 @@ export function NewMemoryForm() {
       coverUrl = uploadResponse.data.fileURL;
     }
     const token = Cookie.get("token");
-    await api.post(
-      "/memories",
+    await api.put(
+      `/memories/${memoryId}`,
       {
         coverUrl,
         content: formData.get("content"),
